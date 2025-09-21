@@ -1,8 +1,14 @@
 
 const Read = (props) => {
     const store = props.store
-  // const setstore = props.setstore
+  const setstore = props.setstore
     let x=0;
+
+    const DeleteHandler = (id)=>{
+      const filterData = store.filter((obj)=>obj.id != id)
+      setstore(filterData)
+    }
+
   const renderList = store.map((obj) =>{
         return(
           <tr key={obj.id}>
@@ -12,6 +18,8 @@ const Read = (props) => {
             <td>{obj.complete? "Yes":"No"}</td>
             <td>{obj.gender}</td>
             <td>{obj.city}</td>
+            <td onClick={()=>DeleteHandler(obj.id)}  style={{color:'red'}}>Delete</td>
+            
 
           </tr>
         )
@@ -27,6 +35,8 @@ const Read = (props) => {
             <th>Completed</th>
             <th>Gender</th>
             <th>City</th>
+            <th>Delete</th>
+            
           </tr>
           </thead>
           <tbody>
